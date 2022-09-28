@@ -39,14 +39,14 @@ Cuddles, 4
 Wheezy, 7
 */
 
-/*
-var challengeOneZooAnimals = // Write your LINQ Query here
+
+var challengeOneZooAnimals = zooAnimals.Where(za => za.Age > 3 && za.Age < 8);
 
 foreach (var zooAnimal in challengeOneZooAnimals)
 {
     Console.WriteLine($"{zooAnimal.Name}, {zooAnimal.Age}");
 }
-*/
+
 
 Console.WriteLine("***********************************************");
 
@@ -69,14 +69,15 @@ MUMBLE
 ASMODEUS
 */
 
-/*
-var challengeTwoZooAnimals = // Write your LINQ Query here
+
+var challengeTwoZooAnimals = zooAnimals.Where(animal => animal.Name.Length > 6)
+    .Select(x => x.Name.ToUpper());
 
 foreach (var zooAnimal in challengeTwoZooAnimals)
 {
     Console.WriteLine($"{zooAnimal}");
 }
-*/
+
 
 Console.WriteLine("***********************************************");
 
@@ -105,14 +106,13 @@ Dave, 3
 Amber, 2
 */
 
-/* 
-var challengeThreeZooAnimals = // Write your LINQ Query here
+
+var challengeThreeZooAnimals = zooAnimals.OrderByDescending(za => za.Age);
 
 foreach (var zooAnimal in challengeThreeZooAnimals)
 {
     Console.WriteLine($"{zooAnimal.Name}, {zooAnimal.Age}");
 }
-*/
 
 Console.WriteLine("***********************************************");
 
@@ -146,9 +146,21 @@ Zoo Location is: AnimalAdventure
         Hello, my name is Slothu.
 */
 
-// var challengeFourZooAnimals = // Write your LINQ Query here
+var challengeFourZooAnimals = zooAnimals.GroupBy(x => x.Location).ToList();
 
-// Can you write a nested foreach loop to create the expected output above?
+
+//Can you write a nested foreach loop to create the expected output above?
+
+//challengeFourZooAnimals.ForEach(x => Console.WriteLine("Hello, my name is" + x.Name));
+
+foreach (var location in challengeFourZooAnimals)
+{
+    Console.WriteLine("Zoo Location is: " + location.Key);
+    foreach (var animal in location)
+    {
+        Console.WriteLine("Hello, my name " + animal.Name);
+    }
+}
 
 Console.WriteLine("***********************************************");
-
+Console.ReadLine();
